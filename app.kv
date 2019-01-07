@@ -1,0 +1,61 @@
+BoxLayout:
+    # this layout has an id so we can check if it is the parent of the popup - below
+    id: main_box
+    BoxLayout:
+        size_hint_x: 0.3
+        orientation: 'vertical'
+        Spinner:
+            id: state_selection
+            text: 'Select sort'
+            # values takes a list - could be a literal here or variable in app
+            values: ['title','artist','year']
+            # on_text is the event (not on_release) when the text updates (spinner option is selected)
+            # note that on_text runs even when the text is set for the very first time
+            on_text: app.sort(self.text)
+        Label:
+            text: 'Title'
+        TextInput:
+            id: add_title
+            value: ''
+            size_hint_y: None
+            height: '48dp'
+            multiline: False
+            write_tab: False
+        Label:
+            text: 'Artist'
+        TextInput:
+            id: add_artist
+            value: ''
+            size_hint_y: None
+            height: '48dp'
+            multiline: False
+            write_tab: False
+        Label:
+            text: 'Year'
+        TextInput:
+            id: add_year
+            value: ''
+            size_hint_y: None
+            height: '48dp'
+            multiline: False
+            write_tab: False
+        Button:
+            text: 'Add Song'
+            on_release: app.add_song()
+        Button:
+            text: 'Clear'
+            on_release: app.press_clear()
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+
+            GridLayout:
+                # this layout is populated with (button) widgets in app code
+                id: entries_box
+                cols: 1
+                orientation: 'vertical'
+        Label:
+            id: bottom_text
+            size_hint_y: 0.1
+            text: ''
